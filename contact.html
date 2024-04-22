@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact for Sponsorship</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <h1>Contact for Sponsorship</h1>
+    <form id="sponsorship-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="company">Company Name:</label>
+        <input type="text" id="company" name="company" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+
+        <div class="button-container">
+            <button type="submit">Submit</button>
+        </div>
+        
+    </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                
+                const formData = new FormData(form);
+
+                for (const pair of formData.entries()) {
+                    console.log(pair[0] + ': ' + pair[1]);
+                }
+
+                form.reset();
+            });
+        });
+    </script>
+</body>
+</html>

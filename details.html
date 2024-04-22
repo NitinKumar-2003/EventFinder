@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <link rel="stylesheet" href="details.css">
+</head>
+<body>
+    
+    <h1>Event Details</h1>
+    <div id="event-details">
+    </div>
+
+    <div class="button-container">
+        <a href="contact.html" class="button">Contact for Sponsorship</a>
+        <a href="register.html" class="button">Register</a>
+    </div>
+
+    <script>
+        var eventData = JSON.parse(localStorage.getItem('selectedEvent'));
+
+        if (eventData) {
+            var eventDetailsDiv = document.getElementById('event-details');
+            for (var key in eventData) {
+                if (eventData.hasOwnProperty(key)) {
+                    var p = document.createElement('p');
+                    p.textContent = key + ': ' + eventData[key];
+                    eventDetailsDiv.appendChild(p);
+                }
+            }
+        } else {
+            alert('No event data found.');
+        }
+
+        document.getElementById('contactButton').addEventListener('click', function() {
+            alert('Contact for Sponsorship button clicked.');
+        });
+
+        document.getElementById('registerButton').addEventListener('click', function() {
+            alert('Register button clicked.');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management - EventFinder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>EVENTFINDER</h1>
+            <ul>
+                <li><a href="main.html">Home</a></li>
+                <li><a href="after-signin.html">Featured Events</a></li>
+                <li><a href="#search">Search Events</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Event Management</h1>
+            <form id="event-form">
+                <label for="organiser-name">Organiser Name:</label>
+                <input type="text" id="organiser-name" name="organiser-name" required>
+
+                <label for="organiser-email">Organiser Email:</label>
+                <input type="email" id="organiser-email" name="organiser-email" required>
+
+                <label for="organiser-mobile">Organiser Mobile No.:</label>
+                <input type="tel" id="organiser-mobile" name="organiser-mobile" required>
+
+                <label for="event-title">Event Title:</label>
+                <input type="text" id="event-title" name="event-title" required>
+
+                <label for="event-theme">Event Theme:</label>
+                <input type="text" id="event-theme" name="event-theme" >
+
+                <label for="event-date-time">Date and Time:</label>
+                <input type="datetime-local" id="event-date-time" name="event-date-time" required>
+
+                <label for="description">Description:</label>
+                <input type="text" id="description" name="description" required>
+
+                <label for="event-location">Location:</label>
+                <input type="text" id="event-location" name="event-location" required>
+
+                <label for="event-agenda">Agenda or Schedule:</label>
+                <textarea id="event-agenda" name="event-agenda" rows="4" ></textarea>               
+
+                <label for="speakers-performers">Speakers or Performers:</label>
+                <textarea id="speakers-performers" name="speakers-performers" rows="4" ></textarea>
+
+                <label for="topics-covered">Topics or Themes Covered:</label>
+                <textarea id="topics-covered" name="topics-covered" rows="4" ></textarea>
+
+                <label for="target-audience">Target Audience:</label>
+                <input type="text" id="target-audience" name="target-audience" required>
+
+
+                <label for="contact-info">Contact Information:</label>
+                <textarea id="contact-info" name="contact-info" rows="4" ></textarea>
+
+                <label for="social-media">Social Media and Hashtags:</label>
+                <textarea id="social-media" name="social-media" rows="4" ></textarea>
+
+                <label for="sponsors-partners">Sponsors or Partners:</label>
+                <textarea id="sponsors-partners" name="sponsors-partners" rows="4" ></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 EventFinder. All rights reserved.</p>
+    </footer>
+    <script src="event-management.js" defer></script>
+</body>
+</html>

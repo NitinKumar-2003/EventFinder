@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventFinder - After Sign In</title>
+    <link rel="stylesheet" href="after-signin.css"> 
+    <style>
+      
+        .event-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .event-item button {
+            margin-top: 5px;
+        }
+        #login-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>EventFinder</h1>
+        <ul>
+            <li><a href="main.html">Home</a></li>
+            <li><a href="after-signin.html">Featured Events</a></li>
+            <li><a href="#" id="search-events-link">Search Events</a></li>
+        </ul>
+    </nav>
+    
+    <div id="search-bar" style="display: none;"> 
+        <input type="text" id="search-input" placeholder="Search by event name or location">
+        <button id="search-button" class="button">Search</button>
+    </div>
+
+    <main>
+        <h2>Event List</h2>
+        <div id="event-list">
+        </div>
+        <button id="eventManagementButton" class="button">Add Your Event</button>
+    </main>
+
+    <div id="login-form">
+        <h2>Admin Login</h2>
+        <input type="email" id="admin-email" placeholder="Email">
+        <input type="password" id="admin-password" placeholder="Password">
+        <button id="login-button" class="button">Login</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 EventFinder. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminEmail = 'nitinrajput2003@gmail.com'; 
+            const adminPassword = 'Nitin@0000'; 
+            function toggleSearchBar() {
+                const searchBar = document.getElementById('search-bar');
+                searchBar.style.display = searchBar.style.display === 'none' ? 'block' : 'none';
+            }
+
+            const searchEventsLink = document.getElementById('search-events-link');
+            searchEventsLink.addEventListener('click', function(event) {
+                event.preventDefault(); 
+                toggleSearchBar(); 
+            });
+
+            function displayStoredEvents(events) {
+                const eventList = document.getElementById('event-list');
+                eventList.innerHTML = '';
+                events.forEach((event, index) => {
+                    const eventItem = document.createElement('div');
+                    eventItem.classList.add('event-item');
+                    eventItem.innerHTML = `
+                        <h3>${event['event-title']}</h3>
+                        <p>Date: ${event['event-date-time']}</p>
+                        <p>Location: ${event['event-location']}</p>
+                        <p>Organiser: ${event['organiser-email']}</p>
+                        <button class="view-more-button" data-index="${index}">View More</button> <!-- Add View More button -->
+                    `;
+                    eventList.appendChild(eventItem);
+                });
+            }
+
+            function filterEvents(searchText) {
+                const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+                const filteredEvents = storedEvents.filter(event => {
+                    const eventName = event['event-title'].toLowerCase();
+                    const eventLocation = event['event-location'].toLowerCase();
+                    searchText = searchText.toLowerCase();
+                    return eventName.includes(searchText) || eventLocation.includes(searchText);
+                });
+                displayStoredEvents(filteredEvents);
+            }
+
+            displayStoredEvents(JSON.parse(localStorage.getItem('events')) || []);
+
+            const eventManagementButton = document.getElementById('eventManagementButton');
+            eventManagementButton.addEventListener('click', function() {
+                window.location.href = 'event-management.html'; 
+            });
+
+            const searchButton = document.getElementById('search-button');
+            searchButton.addEventListener('click', function() {
+                const searchText = document.getElementById('search-input').value;
+                filterEvents(searchText);
+            });
+
+            document.addEventListener('click', function(event) {
+                if (event.target.classList.contains('view-more-button')) {
+                    const index = event.target.getAttribute('data-index');
+                    const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+                    const eventDetails = storedEvents[index];
+                    localStorage.setItem('selectedEvent', JSON.stringify(eventDetails)); 
+                    window.location.href = 'details.html'; 
+                }
+            });
+
+            const loginForm = document.getElementById('login-form');
+            const adminEmailInput = document.getElementById('admin-email');
+            const adminPasswordInput = document.getElementById('admin-password');
+            const loginButton = document.getElementById('login-button');
+
+            loginButton.addEventListener('click', function() {
+                const email = adminEmailInput.value;
+                const password = adminPasswordInput.value;
+                if (email === adminEmail && password === adminPassword) {
+                    const deleteButtons = document.querySelectorAll('.delete-button');
+                    deleteButtons.forEach(button => {
+                        button.style.display = 'block';
+                    });
+                    loginForm.style.display = 'none';
+                } else {
+                    alert('Invalid email or password. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
