@@ -14,7 +14,6 @@
                 <li><a href="main.html">Home</a></li>
                 <li><a href="after-signin.html">Featured Events</a></li>
                 <li><a href="#search">Search Events</a></li>
-                
             </ul>
         </nav>
     </header>
@@ -22,7 +21,7 @@
     <main>
         <section>
             <h1>Event Management</h1>
-            <form id="event-form">
+            <form id="event-form" onsubmit="return validateForm()">
                 <label for="organiser-name">Organiser Name:</label>
                 <input type="text" id="organiser-name" name="organiser-name" required>
 
@@ -48,26 +47,25 @@
                 <input type="text" id="event-location" name="event-location" required>
 
                 <label for="event-agenda">Agenda or Schedule:</label>
-                <textarea id="event-agenda" name="event-agenda" rows="4" ></textarea>               
+                <textarea id="event-agenda" name="event-agenda" rows="4" required></textarea>               
 
                 <label for="speakers-performers">Speakers or Performers:</label>
-                <textarea id="speakers-performers" name="speakers-performers" rows="4" ></textarea>
+                <textarea id="speakers-performers" name="speakers-performers" rows="4" required></textarea>
 
                 <label for="topics-covered">Topics or Themes Covered:</label>
-                <textarea id="topics-covered" name="topics-covered" rows="4" ></textarea>
+                <textarea id="topics-covered" name="topics-covered" rows="4" required></textarea>
 
                 <label for="target-audience">Target Audience:</label>
                 <input type="text" id="target-audience" name="target-audience" required>
 
-
                 <label for="contact-info">Contact Information:</label>
-                <textarea id="contact-info" name="contact-info" rows="4" ></textarea>
+                <textarea id="contact-info" name="contact-info" rows="4" required></textarea>
 
                 <label for="social-media">Social Media and Hashtags:</label>
-                <textarea id="social-media" name="social-media" rows="4" ></textarea>
+                <textarea id="social-media" name="social-media" rows="4" required></textarea>
 
                 <label for="sponsors-partners">Sponsors or Partners:</label>
-                <textarea id="sponsors-partners" name="sponsors-partners" rows="4" ></textarea>
+                <textarea id="sponsors-partners" name="sponsors-partners" rows="4" required></textarea>
 
                 <button type="submit">Submit</button>
             </form>
@@ -77,6 +75,25 @@
     <footer>
         <p>&copy; 2024 EventFinder. All rights reserved.</p>
     </footer>
-    <script src="event-management.js" defer></script>
+
+    <script>
+        function validateForm() {
+            // Get all input fields
+            var inputs = document.getElementsByTagName('input');
+
+            // Loop through each input field
+            for (var i = 0; i < inputs.length; i++) {
+                // Check if the input field is required and empty
+                if (inputs[i].hasAttribute('required') && inputs[i].value === '') {
+                    // Alert the user about the missing input
+                    alert(inputs[i].previousElementSibling.textContent.replace(':', '') + ' is required.');
+                    // Prevent form submission
+                    return false;
+                }
+            }
+            // If all required fields are filled, allow form submission
+            return true;
+        }
+    </script>
 </body>
 </html>

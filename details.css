@@ -1,81 +1,65 @@
+/* Reset default browser styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 30px;
+    padding: 0;
     background-color: #f4f4f4;
 }
 
-h1 {
-    margin-bottom: 20px;
-    text-align: center;
-    color: #fbfbfb;   
-}
-
-#event-details {
-    border: 1px solid #989898;
-    padding: 20px;
+/* Container for the dashboard content */
+.container {
+    background-color: #ccc;
+    padding: 30px;
     border-radius: 10px;
-    background-color: #776262;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#event-details p {
-    margin: 0;
-    padding: 10px 20px;
-    font-size: 18px; 
+/* Dashboard layout */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-#event-details p:nth-child(odd) {
-    background-color: #f9f9f9;
+/* Individual card styles */
+.card {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 15px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-#event-details p:nth-child(even) {
-    background-color: #f0f0f0;
-}
-
-#event-details h3 {
+/* Heading styles for the cards */
+.card h3 {
     color: #007bff;
     margin-bottom: 10px;
-    font-size: 24px; 
 }
 
-#event-details .label {
-    font-weight: bold;
-    color: #e5e5e5;
+/* Paragraph styles for the cards */
+.card p {
+    font-size: 18px;
+    margin: 0;
 }
 
-body {
-    background: linear-gradient(to bottom, #484a94, #813d94);
-    color: #333; 
-}
-
-#event-details {
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    color: #333;
-}
-
-#event-details h3 {
-    color: #007bff;
-}
-
-#event-details p:nth-child(odd) {
+/* Alternating background colors for the cards */
+.card:nth-child(odd) {
     background-color: #f9f9f9;
 }
 
-#event-details p:nth-child(even) {
+.card:nth-child(even) {
     background-color: #f0f0f0;
 }
 
+/* Button container styles */
 .button-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
+/* Button styles */
 .button {
     padding: 10px 20px;
     font-size: 16px;
@@ -88,6 +72,7 @@ h1 {
     margin-right: 10px;
 }
 
+/* Button hover effect */
 .button:hover {
     background-color: #ff4d4d;
 }
